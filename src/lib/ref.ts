@@ -5,3 +5,9 @@ export function makeRef(): string {
   const bytes = crypto.getRandomValues(new Uint8Array(5));
   return "SL-" + Array.from(bytes, (b) => ALPHABET[b % ALPHABET.length]).join("");
 }
+
+/** Entry code. This exact string is what the QR code encodes. */
+export function makeCode(): string {
+  const bytes = crypto.getRandomValues(new Uint8Array(8));
+  return "WF-" + Array.from(bytes, (b) => ALPHABET[b % ALPHABET.length]).join("");
+}

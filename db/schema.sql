@@ -24,3 +24,6 @@ create table if not exists attendees (
 
 create index if not exists attendees_registration_idx on attendees(registration_id);
 create index if not exists registrations_status_idx on registrations(status, created_at desc);
+
+alter table registrations add column if not exists checked_in_at timestamptz;
+create index if not exists registrations_code_idx on registrations(code);

@@ -32,3 +32,13 @@ export const MEMBER_OPTIONS = [
 ] as const;
 
 export const naira = (n: number) => `₦${n.toLocaleString("en-NG")}`;
+
+export const SITE_URL = process.env.SITE_URL ?? "https://wonder-fest.vercel.app";
+
+/** 0801 234 5678 or +234… → 234801… for wa.me links */
+export function waNumber(phone: string): string {
+  const d = phone.replace(/\D/g, "");
+  if (d.startsWith("234")) return d;
+  if (d.startsWith("0")) return "234" + d.slice(1);
+  return d;
+}
