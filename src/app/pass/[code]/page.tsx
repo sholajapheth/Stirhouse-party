@@ -25,7 +25,8 @@ export default async function Page({ params }: { params: Promise<{ code: string 
         <div className="relative mx-auto max-w-md px-4 pb-24 pt-6 text-center">
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/65">Entry pass</p>
           <h1 className="mt-1 font-display text-6xl leading-[0.9]">Wonderfest 2026</h1>
-          <p className="mt-2 text-sm text-white/90">{EVENT.date} · {EVENT.venue}</p>
+          <p className="mt-2 text-sm text-white/90">{EVENT.date} · {EVENT.time}</p>
+          <p className="text-sm text-white/90">{EVENT.venue}</p>
           <p className="text-xs text-white/70">{EVENT.address}</p>
         </div>
       </div>

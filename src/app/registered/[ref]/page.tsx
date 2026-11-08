@@ -65,7 +65,7 @@ export default async function Page({ params }: { params: Promise<{ ref: string }
 
         <Step n="03" title="Get your QR pass">
           <p className="text-[15px] leading-relaxed">
-            Once we’ve confirmed your payment we’ll email your entry QR code to <strong>{reg.email}</strong>. Bring it with you on <strong>{EVENT.date}</strong> at {EVENT.venue}, {EVENT.address} ({EVENT.landmark.toLowerCase()}). <a className="font-semibold text-berry underline underline-offset-4" href={EVENT.mapUrl} target="_blank" rel="noreferrer">Get directions</a>.
+            Once we’ve confirmed your payment we’ll email your entry QR code to <strong>{reg.email}</strong>. Bring it with you on <strong>{EVENT.date}</strong>, <strong>{EVENT.time}</strong>, at {EVENT.venue}, {EVENT.address} ({EVENT.landmark.toLowerCase()}). <a className="font-semibold text-berry underline underline-offset-4" href={EVENT.mapUrl} target="_blank" rel="noreferrer">Get directions</a>.
           </p>
         </Step>
 

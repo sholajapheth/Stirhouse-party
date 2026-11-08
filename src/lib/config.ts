@@ -2,6 +2,7 @@ export const EVENT = {
   name: "WONDERFEST",
   tagline: "NextGen Christmas Celebration",
   date: "Saturday, December 12, 2026",
+  time: "10:00 AM",
   venue: "HICC Gbagada",
   address: "Plot 5–7, Gbagada–Oshodi Expressway, Gbagada, Lagos",
   landmark: "Opposite the Mobil filling station",

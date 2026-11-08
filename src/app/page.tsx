@@ -39,7 +39,9 @@ export default function Home() {
           </p>
 
           <div className="rise mt-9 grid gap-x-10 gap-y-5 border-t border-white/20 pt-6 text-sm sm:grid-cols-3" style={d(340)}>
-            <Detail k="When" v="Saturday, 12 December 2026" />
+            <Detail k="When" v="Saturday, 12 December 2026">
+              <span className="mt-0.5 block text-white/75">Starts at {EVENT.time}</span>
+            </Detail>
             <Detail k="Where" v={EVENT.venue}>
               <span className="mt-0.5 block text-white/75">{EVENT.address}</span>
               <span className="block text-white/60">{EVENT.landmark}</span>
