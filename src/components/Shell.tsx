@@ -1,23 +1,34 @@
 import Link from "next/link";
-import { EVENT } from "@/lib/config";
-import { Star } from "./Star";
 
 export function Shell({ children, back }: { children: React.ReactNode; back?: boolean }) {
   return (
-    <div className="stars relative min-h-dvh">
-      <div className="relative z-10 mx-auto w-full max-w-2xl px-4 pb-16 pt-6 sm:px-6">
-        <header className="mb-8 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 font-display text-lg tracking-wide text-gold-soft">
-            <Star className="glow size-5 text-gold" />
-            {EVENT.name}
+    <div className="min-h-dvh bg-bone">
+      <header className="sticky top-0 z-30 border-b border-white/10 bg-black text-white">
+        <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
+          <Link href="/" className="font-display text-2xl leading-none tracking-wide">
+            ST<span className="text-[#c8506b]">★</span>R LIGHT
           </Link>
-          {back && (
-            <Link href="/" className="text-sm text-white/60 underline-offset-4 hover:text-white hover:underline">
+          {back ? (
+            <Link href="/" className="-mr-2 flex h-11 items-center px-2 text-sm text-white/70 hover:text-white">
               ← Back
             </Link>
+          ) : (
+            <span className="text-[11px] uppercase tracking-[0.22em] text-white/50">Gbagada NextGen</span>
           )}
-        </header>
-        {children}
+        </div>
+      </header>
+      {children}
+    </div>
+  );
+}
+
+export function PageHead({ eyebrow, title, sub }: { eyebrow: string; title: string; sub: string }) {
+  return (
+    <div className="grain bg-wine text-white">
+      <div className="mx-auto max-w-2xl px-4 pb-8 pt-8 sm:px-6 sm:pb-10 sm:pt-12">
+        <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/65">{eyebrow}</p>
+        <h1 className="mt-2 font-display text-[3.25rem] leading-[0.95] sm:text-7xl">{title}</h1>
+        <p className="mt-3 font-serif text-xl italic text-white/85">{sub}</p>
       </div>
     </div>
   );

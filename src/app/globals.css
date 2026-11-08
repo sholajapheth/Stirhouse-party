@@ -1,49 +1,39 @@
 @import "tailwindcss";
+@import "@fontsource/bebas-neue/400.css";
+@import "@fontsource/instrument-serif/400-italic.css";
+@import "@fontsource-variable/inter";
 
 @theme {
-  --color-night: #0a0e2e;
-  --color-night-2: #131a4a;
-  --color-gold: #f6c453;
-  --color-gold-soft: #fde9a8;
-  --color-ember: #e0202f;
-  --color-paper: #fffaf0;
-  --color-ink: #1b1b2f;
-  --font-display: "Georgia", "Times New Roman", serif;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --color-black: #0b0b0c;
+  --color-ink: #161617;
+  --color-wine: #6b1326;
+  --color-wine-deep: #4a0c19;
+  --color-wine-soft: #f3e3e7;
+  --color-bone: #f6f2ee;
+  --color-line: #d9d2cb;
+  --color-mute: #6f6a66;
+  --font-display: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
-html { color-scheme: dark; }
-
+html { -webkit-text-size-adjust: 100%; }
 body {
-  min-height: 100dvh;
   font-family: var(--font-sans);
-  color: var(--color-paper);
-  background:
-    radial-gradient(1200px 600px at 50% -10%, #2a2f8f55, transparent 70%),
-    radial-gradient(700px 500px at 100% 100%, #e0202f22, transparent 70%),
-    var(--color-night);
-  background-attachment: fixed;
+  background: var(--color-bone);
+  color: var(--color-black);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* twinkling star field */
-.stars::before, .stars::after {
-  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image:
-    radial-gradient(1.5px 1.5px at 12% 18%, #fff, transparent),
-    radial-gradient(1px 1px at 28% 72%, #fff9, transparent),
-    radial-gradient(1.5px 1.5px at 44% 34%, #fde9a8, transparent),
-    radial-gradient(1px 1px at 63% 12%, #fff, transparent),
-    radial-gradient(1.5px 1.5px at 78% 58%, #fff9, transparent),
-    radial-gradient(1px 1px at 90% 28%, #fde9a8, transparent),
-    radial-gradient(1px 1px at 8% 88%, #fff9, transparent),
-    radial-gradient(1.5px 1.5px at 55% 90%, #fff, transparent);
-  animation: twinkle 5s ease-in-out infinite;
-}
-.stars::after { animation-delay: -2.5s; transform: translate(37px, 21px) scale(1.1); opacity: .7; }
-@keyframes twinkle { 0%,100% { opacity: .35 } 50% { opacity: 1 } }
-
-@media (prefers-reduced-motion: reduce) {
-  .stars::before, .stars::after { animation: none; }
+/* subtle paper grain on dark blocks */
+.grain { position: relative; isolation: isolate; }
+.grain::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: .09; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
-.glow { filter: drop-shadow(0 0 18px #f6c45399); }
+@keyframes ticker { to { transform: translateX(-50%); } }
+.ticker { animation: ticker 28s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .ticker { animation: none; } }
+
+:focus-visible { outline: 2px solid var(--color-wine); outline-offset: 2px; }

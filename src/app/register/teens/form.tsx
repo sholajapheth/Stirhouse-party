@@ -2,8 +2,8 @@
 
 import { useActionState } from "react";
 import { registerTeen, type FormState } from "@/app/actions";
-import { AgeSelect, Field, MemberStatus, SubmitButton } from "@/components/fields";
-import { TEEN_AGES } from "@/lib/config";
+import { AgeSelect, CheckoutBar, Field, FormError, MemberStatus, Section } from "@/components/fields";
+import { PRICE_PER_PERSON, TEEN_AGES, naira } from "@/lib/config";
 
 export function TeenForm() {
   const [state, action, pending] = useActionState<FormState, FormData>(registerTeen, {});
@@ -11,32 +11,28 @@ export function TeenForm() {
   const v = (state.values ?? {}) as Record<string, string>;
 
   return (
-    <form action={action} className="space-y-6">
-      {state.message && (
-        <p role="alert" className="rounded-xl border border-red-400/40 bg-red-500/10 p-3 text-sm text-red-200">
-          {state.message}
-        </p>
-      )}
+    <form action={action} className="space-y-10" noValidate>
+      <FormError message={state.message} />
 
-      <section className="space-y-4 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-        <h2 className="font-display text-xl text-gold-soft">About you</h2>
-        <Field label="Your full name" name="contactName" autoComplete="name" defaultValue={v.contactName} error={e.contactName} />
+      <Section n="01" title="About you">
+        <Field label="Full name" name="contactName" autoComplete="name" defaultValue={v.contactName} error={e.contactName} />
         <div className="grid grid-cols-[1fr_6.5rem] gap-3">
-          <Field label="Your phone number" name="contactPhone" type="tel" inputMode="tel" autoComplete="tel" defaultValue={v.contactPhone} error={e.contactPhone} />
+          <Field label="Phone number" name="contactPhone" type="tel" inputMode="tel" autoComplete="tel" defaultValue={v.contactPhone} error={e.contactPhone} />
           <AgeSelect name="age" ages={TEEN_AGES} defaultValue={v.age} error={e.age} />
         </div>
-        <Field label="Email" name="email" type="email" inputMode="email" autoComplete="email" defaultValue={v.email} error={e.email} hint="Your entry code will be sent here." />
-      </section>
+        <Field label="Email" name="email" type="email" inputMode="email" autoComplete="email" defaultValue={v.email} error={e.email} hint="Your entry QR code is sent here." />
+      </Section>
 
-      <section className="space-y-4 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-        <h2 className="font-display text-xl text-gold-soft">Parent / guardian</h2>
-        <Field label="Parent / guardian's name" name="guardianName" defaultValue={v.guardianName} error={e.guardianName} />
-        <Field label="Parent / guardian's phone number" name="guardianPhone" type="tel" inputMode="tel" defaultValue={v.guardianPhone} error={e.guardianPhone} />
-      </section>
+      <Section n="02" title="Parent / guardian">
+        <Field label="Name" name="guardianName" defaultValue={v.guardianName} error={e.guardianName} />
+        <Field label="Phone number" name="guardianPhone" type="tel" inputMode="tel" defaultValue={v.guardianPhone} error={e.guardianPhone} />
+      </Section>
 
-      <MemberStatus teen error={e.memberStatus} defaultValue={v.memberStatus} />
+      <Section n="03" title="Church">
+        <MemberStatus teen error={e.memberStatus} defaultValue={v.memberStatus} />
+      </Section>
 
-      <SubmitButton pending={pending}>Register &amp; get payment details</SubmitButton>
+      <CheckoutBar pending={pending} total={naira(PRICE_PER_PERSON)} detail="1 teen pass" cta="Register" />
     </form>
   );
 }
