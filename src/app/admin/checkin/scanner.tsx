@@ -62,7 +62,7 @@ export function Scanner() {
 
   return (
     <main className="mx-auto max-w-md px-4 pb-10">
-      <div className="relative aspect-square w-full overflow-hidden border-[1.5px] border-white/30 bg-ink">
+      <div className="relative aspect-square w-full overflow-hidden border-[1.5px] border-white/30 bg-pine">
         <video ref={video} playsInline muted className={on ? "size-full object-cover" : "hidden"} />
         {on && <div className="pointer-events-none absolute inset-[18%] border-2 border-white/80" aria-hidden />}
         {!on && (
@@ -72,7 +72,7 @@ export function Scanner() {
           </button>
         )}
       </div>
-      {err && <p role="alert" className="mt-3 text-sm text-[#ff8da1]">{err}</p>}
+      {err && <p role="alert" className="mt-3 text-sm text-[#ffb3bd]">{err}</p>}
       {on && <button onClick={() => setOn(false)} className="mt-2 text-sm text-white/60 underline underline-offset-4">Stop camera</button>}
 
       <form
@@ -84,7 +84,7 @@ export function Scanner() {
           autoCapitalize="characters" autoCorrect="off" spellCheck={false} aria-label="Entry code"
           className="h-12 min-w-0 flex-1 rounded-none border-[1.5px] border-white/40 bg-transparent px-3.5 font-mono text-base uppercase text-white outline-none placeholder:normal-case placeholder:text-white/35 focus:border-white"
         />
-        <button disabled={pending} className="h-12 bg-wine px-5 text-xs font-semibold uppercase tracking-[0.1em] disabled:opacity-60">Check in</button>
+        <button disabled={pending} className="h-12 bg-berry px-5 text-xs font-semibold uppercase tracking-[0.1em] disabled:opacity-60">Check in</button>
       </form>
 
       <div aria-live="assertive" className="mt-5">
@@ -97,27 +97,27 @@ export function Scanner() {
 function Result({ res, onUndo, onClear }: { res: CheckIn; onUndo: (code: string) => void; onClear: () => void }) {
   if (res.result === "invalid" || res.result === "unpaid") {
     return (
-      <div className="border-[1.5px] border-[#ff8da1] bg-wine p-5">
+      <div className="border-l-[10px] border-gold bg-berry p-5 text-white">
         <p className="font-display text-5xl leading-none">{res.result === "unpaid" ? "Not paid" : "Invalid code"}</p>
-        <p className="mt-2 text-sm text-white/80">{res.result === "unpaid" ? "This registration hasn't been approved." : "No registration matches that code."}</p>
-        <button onClick={onClear} className="mt-4 h-11 border border-white/60 px-4 text-xs font-semibold uppercase tracking-[0.1em]">Scan next</button>
+        <p className="mt-2 text-sm text-white/85">{res.result === "unpaid" ? "This registration hasn't been approved." : "No registration matches that code."}</p>
+        <button onClick={onClear} className="mt-4 h-11 border border-white/70 px-4 text-xs font-semibold uppercase tracking-[0.1em]">Scan next</button>
       </div>
     );
   }
   const ok = res.result === "admitted";
   return (
-    <div className={["border-[1.5px] p-5", ok ? "border-[#4ade80] bg-[#0f2a1a]" : "border-[#f5b942] bg-[#2e2209]"].join(" ")}>
-      <p className={["font-display text-6xl leading-none", ok ? "text-[#4ade80]" : "text-[#f5b942]"].join(" ")}>{ok ? "Admit" : "Already in"}</p>
-      <p className="mt-1 text-sm text-white/75">{ok ? "Checked in just now" : `First checked in at ${time(res.at)}`}</p>
+    <div className={["border-l-[10px] p-5 text-pine", ok ? "border-[#1f9d5c] bg-white" : "border-gold bg-gold-soft"].join(" ")}>
+      <p className={["font-display text-6xl leading-none", ok ? "text-[#1f9d5c]" : "text-berry"].join(" ")}>{ok ? "Admit" : "Already in"}</p>
+      <p className="mt-1 text-sm text-mute">{ok ? "Checked in just now" : `First checked in at ${time(res.at)}`}</p>
       <p className="mt-4 text-xl font-semibold">{res.name}</p>
-      <p className="font-mono text-xs text-white/50">{res.code}</p>
-      <ul className="mt-3 divide-y divide-white/15 border-y border-white/15">
-        {res.people.map((p, i) => <li key={i} className="flex justify-between py-2 text-[15px]"><span>{p.name}</span><span className="text-white/55">{p.age} yrs</span></li>)}
+      <p className="font-mono text-xs text-mute">{res.code}</p>
+      <ul className="mt-3 divide-y divide-pine/15 border-y border-pine/15">
+        {res.people.map((p, i) => <li key={i} className="flex justify-between py-2 text-[15px]"><span>{p.name}</span><span className="text-mute">{p.age} yrs</span></li>)}
       </ul>
-      <p className="mt-3 text-sm text-white/70">{res.people.length} {res.people.length === 1 ? "person" : "people"}</p>
+      <p className="mt-3 text-sm text-mute">{res.people.length} {res.people.length === 1 ? "person" : "people"}</p>
       <div className="mt-4 flex gap-2">
-        <button onClick={onClear} className="h-11 flex-1 bg-white text-xs font-semibold uppercase tracking-[0.1em] text-black">Scan next</button>
-        {ok && <button onClick={() => onUndo(res.code)} className="h-11 border border-white/40 px-4 text-xs uppercase tracking-[0.1em]">Undo</button>}
+        <button onClick={onClear} className="h-11 flex-1 bg-pine text-xs font-semibold uppercase tracking-[0.1em] text-white">Scan next</button>
+        {ok && <button onClick={() => onUndo(res.code)} className="h-11 border border-pine/40 px-4 text-xs uppercase tracking-[0.1em]">Undo</button>}
       </div>
     </div>
   );

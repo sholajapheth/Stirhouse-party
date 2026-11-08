@@ -47,19 +47,19 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
   const pending = stats.total - stats.paid;
 
   return (
-    <div className="min-h-dvh bg-bone">
-      <header className="sticky top-0 z-30 bg-black text-white">
+    <div className="min-h-dvh bg-snow">
+      <header className="sticky top-0 z-30 bg-pine text-white">
         <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-4">
-          <span className="font-display text-2xl leading-none">WONDER<span className="text-[#c8506b]">FEST</span> <span className="text-white/50">Admin</span></span>
+          <span className="font-display text-2xl leading-none">WONDER<span className="text-gold">FEST</span> <span className="text-white/50">Admin</span></span>
           <div className="flex items-center gap-1">
-            <Link href="/admin/checkin" className="flex h-10 items-center bg-wine px-4 text-xs font-semibold uppercase tracking-[0.1em]">Check-in</Link>
+            <Link href="/admin/checkin" className="flex h-10 items-center bg-berry px-4 text-xs font-semibold uppercase tracking-[0.1em]">Check-in</Link>
             <form action={logout}><button className="h-10 px-3 text-xs text-white/60 hover:text-white">Sign out</button></form>
           </div>
         </div>
       </header>
 
       <main className="mx-auto max-w-4xl px-4 pb-16 pt-5">
-        <dl className="grid grid-cols-2 gap-px border-[1.5px] border-black bg-black sm:grid-cols-4">
+        <dl className="grid grid-cols-2 gap-px border-[1.5px] border-pine bg-pine sm:grid-cols-4">
           <Stat k="Awaiting" v={pending} accent />
           <Stat k="Paid" v={stats.paid} />
           <Stat k="Revenue" v={naira(stats.revenue)} />
@@ -70,16 +70,16 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
           <input type="hidden" name="tab" value={tab} />
           <input
             name="q" defaultValue={q} placeholder="Search name, ref, phone, email, code" aria-label="Search"
-            className="h-12 min-w-0 flex-1 rounded-none border-[1.5px] border-black bg-white px-3.5 text-base outline-none focus:border-wine focus:ring-4 focus:ring-wine/15"
+            className="h-12 min-w-0 flex-1 rounded-none border-[1.5px] border-pine bg-white px-3.5 text-base outline-none focus:border-berry focus:ring-4 focus:ring-berry/15"
           />
-          <button className="h-12 bg-black px-5 text-xs font-semibold uppercase tracking-[0.1em] text-white">Search</button>
+          <button className="h-12 bg-pine px-5 text-xs font-semibold uppercase tracking-[0.1em] text-white">Search</button>
         </form>
 
-        <nav className="mt-4 flex gap-1 overflow-x-auto border-b-[3px] border-black" aria-label="Filter">
+        <nav className="mt-4 flex gap-1 overflow-x-auto border-b-[3px] border-pine" aria-label="Filter">
           {TABS.map(([t, label]) => (
             <Link
               key={t} href={`/admin?tab=${t}${q ? `&q=${encodeURIComponent(q)}` : ""}`}
-              className={["shrink-0 px-4 py-3 text-xs font-semibold uppercase tracking-[0.1em]", tab === t ? "bg-black text-white" : "text-mute hover:text-black"].join(" ")}
+              className={["shrink-0 px-4 py-3 text-xs font-semibold uppercase tracking-[0.1em]", tab === t ? "bg-pine text-white" : "text-mute hover:text-pine"].join(" ")}
               aria-current={tab === t ? "page" : undefined}
             >
               {label}
@@ -100,7 +100,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
 
 function Stat({ k, v, accent }: { k: string; v: string | number; accent?: boolean }) {
   return (
-    <div className={["p-4", accent ? "bg-wine text-white" : "bg-white"].join(" ")}>
+    <div className={["p-4", accent ? "bg-berry text-white" : "bg-white"].join(" ")}>
       <dt className="text-[11px] uppercase tracking-[0.16em] opacity-65">{k}</dt>
       <dd className="mt-1 font-display text-4xl leading-none">{v}</dd>
     </div>

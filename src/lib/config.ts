@@ -1,8 +1,11 @@
 export const EVENT = {
   name: "WONDERFEST",
   tagline: "NextGen Christmas Celebration",
-  date: "Sunday, December 13, 2026",
+  date: "Saturday, December 12, 2026",
   venue: "HICC Gbagada",
+  address: "Plot 5–7, Gbagada–Oshodi Expressway, Gbagada, Lagos",
+  landmark: "Opposite the Mobil filling station",
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=Harvesters+International+Christian+Centre+Gbagada+Plot+5-7+Gbagada+Oshodi+Expressway+Lagos",
 };
 
 export const PRICE_PER_PERSON = Number(process.env.PRICE_PER_PERSON ?? 20000);

@@ -4,36 +4,79 @@
 @import "@fontsource-variable/inter";
 
 @theme {
-  --color-black: #0b0b0c;
-  --color-ink: #161617;
-  --color-wine: #6b1326;
-  --color-wine-deep: #4a0c19;
-  --color-wine-soft: #f3e3e7;
-  --color-bone: #f6f2ee;
-  --color-line: #d9d2cb;
-  --color-mute: #6f6a66;
+  --color-pine: #14382b;
+  --color-pine-deep: #0b2a20;
+  --color-pine-mid: #1c5a42;
+  --color-berry: #b3172b;
+  --color-berry-deep: #8e1020;
+  --color-berry-soft: #fbe4e6;
+  --color-gold: #f0b94a;
+  --color-gold-soft: #f9e6b3;
+  --color-snow: #fbf6ec;
+  --color-line: #e3d8c6;
+  --color-mute: #5f6b5c;
   --font-display: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
   font-family: var(--font-sans);
-  background: var(--color-bone);
-  color: var(--color-black);
+  background: var(--color-snow);
+  color: var(--color-pine);
   -webkit-font-smoothing: antialiased;
 }
 
-/* subtle paper grain on dark blocks */
+/* soft paper grain on coloured blocks */
 .grain { position: relative; isolation: isolate; }
 .grain::after {
-  content: ""; position: absolute; inset: 0; z-index: -1; opacity: .09; pointer-events: none;
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: .08; pointer-events: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
+/* ---------- Christmas motion ---------- */
 @keyframes ticker { to { transform: translateX(-50%); } }
-.ticker { animation: ticker 28s linear infinite; }
-@media (prefers-reduced-motion: reduce) { .ticker { animation: none; } }
+.ticker { animation: ticker 30s linear infinite; }
 
-:focus-visible { outline: 2px solid var(--color-wine); outline-offset: 2px; }
+/* snowfall: each flake sets --x (start %), --s (size px), --d (duration), --delay, --sway */
+@keyframes snow {
+  0%   { transform: translate3d(0, -10vh, 0); opacity: 0; }
+  10%  { opacity: var(--o, .9); }
+  100% { transform: translate3d(var(--sway, 30px), 110%, 0); opacity: .2; }
+}
+.flake {
+  position: absolute; top: 0; left: var(--x); width: var(--s); height: var(--s);
+  border-radius: 50%; background: #fff; opacity: 0; filter: blur(.3px);
+  animation: snow var(--d) linear var(--delay) infinite;
+  will-change: transform;
+}
+
+/* string lights */
+@keyframes twinkle {
+  0%, 100% { opacity: 1; filter: brightness(1.15); box-shadow: 0 0 10px 3px var(--glow); }
+  50%      { opacity: .45; filter: brightness(.7); box-shadow: 0 0 3px 1px var(--glow); }
+}
+.bulb { animation: twinkle 2.4s ease-in-out infinite; }
+
+/* bells */
+@keyframes sway   { 0%,100% { transform: rotate(-7deg); } 50% { transform: rotate(7deg); } }
+@keyframes jingle { 0% { transform: rotate(0); } 15% { transform: rotate(24deg); } 30% { transform: rotate(-20deg); }
+                    45% { transform: rotate(15deg); } 60% { transform: rotate(-10deg); } 80% { transform: rotate(5deg); } 100% { transform: rotate(0); } }
+.bell { transform-origin: 50% 0; animation: sway 3.6s ease-in-out infinite; }
+.bell.ring { animation: jingle .9s ease-out; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.rise { opacity: 0; animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: var(--i, 0ms); }
+
+@keyframes star { 0%,100% { transform: scale(1) rotate(0); filter: drop-shadow(0 0 6px #f0b94a99); }
+                  50% { transform: scale(1.12) rotate(8deg); filter: drop-shadow(0 0 16px #f0b94acc); } }
+.star { animation: star 3s ease-in-out infinite; transform-origin: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker, .flake, .bulb, .bell, .star { animation: none !important; }
+  .flake { opacity: .7; }
+  .rise { animation: none; opacity: 1; }
+}
+
+:focus-visible { outline: 3px solid var(--color-gold); outline-offset: 2px; }

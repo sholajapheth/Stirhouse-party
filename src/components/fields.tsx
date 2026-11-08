@@ -1,11 +1,11 @@
 import { MEMBER_OPTIONS } from "@/lib/config";
 
 const base =
-  "block w-full h-12 border-[1.5px] border-black bg-white px-3.5 text-base text-black placeholder:text-mute/60 " +
-  "rounded-none outline-none transition focus:border-wine focus:ring-4 focus:ring-wine/15 " +
-  "aria-[invalid=true]:border-wine aria-[invalid=true]:bg-wine-soft";
+  "block w-full h-12 border-[1.5px] border-pine bg-white px-3.5 text-base text-pine placeholder:text-mute/60 " +
+  "rounded-none outline-none transition focus:border-berry focus:ring-4 focus:ring-berry/15 " +
+  "aria-[invalid=true]:border-berry aria-[invalid=true]:bg-berry-soft";
 
-const labelCls = "mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-black";
+const labelCls = "mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-pine";
 
 export function Field({
   label, name, error, hint, defaultValue, type = "text", autoComplete, inputMode, placeholder,
@@ -22,7 +22,7 @@ export function Field({
         aria-invalid={!!error} aria-describedby={error ? `${name}-err` : undefined}
       />
       {hint && !error && <span className="mt-1.5 block text-xs text-mute">{hint}</span>}
-      {error && <span id={`${name}-err`} role="alert" className="mt-1.5 block text-sm font-medium text-wine">{error}</span>}
+      {error && <span id={`${name}-err`} role="alert" className="mt-1.5 block text-sm font-medium text-berry">{error}</span>}
     </label>
   );
 }
@@ -40,7 +40,7 @@ export function AgeSelect({
         </select>
         <svg className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 8l5 5 5-5" /></svg>
       </div>
-      {error && <span role="alert" className="mt-1.5 block text-sm font-medium text-wine">{error}</span>}
+      {error && <span role="alert" className="mt-1.5 block text-sm font-medium text-berry">{error}</span>}
     </label>
   );
 }
@@ -58,7 +58,7 @@ export function MemberStatus({ error, defaultValue, teen }: { error?: string; de
         {options.map((o) => (
           <label
             key={o.value}
-            className="flex min-h-14 cursor-pointer items-center gap-3.5 border-[1.5px] border-black bg-white px-3.5 py-3 text-[15px] leading-snug transition has-[:checked]:border-wine has-[:checked]:bg-wine has-[:checked]:text-white has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-wine/20"
+            className="relative flex min-h-14 cursor-pointer items-center gap-3.5 border-[1.5px] border-pine bg-white px-3.5 py-3 text-[15px] leading-snug transition has-[:checked]:border-berry has-[:checked]:bg-berry has-[:checked]:text-white has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-berry/20"
           >
             <input type="radio" name="memberStatus" value={o.value} defaultChecked={defaultValue === o.value} className="peer sr-only" />
             <span className="grid size-5 shrink-0 place-items-center rounded-full border-[1.5px] border-current after:size-2.5 after:scale-0 after:rounded-full after:bg-current after:transition peer-checked:after:scale-100" aria-hidden />
@@ -66,16 +66,16 @@ export function MemberStatus({ error, defaultValue, teen }: { error?: string; de
           </label>
         ))}
       </div>
-      {error && <span role="alert" className="mt-2 block text-sm font-medium text-wine">{error}</span>}
+      {error && <span role="alert" className="mt-2 block text-sm font-medium text-berry">{error}</span>}
     </fieldset>
   );
 }
 
 export function Section({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
   return (
-    <section className="border-t-[3px] border-black pt-4">
+    <section className="border-t-[3px] border-pine pt-4">
       <div className="mb-5 flex items-baseline gap-3">
-        <span className="font-display text-2xl text-wine">{n}</span>
+        <span className="font-display text-2xl text-berry">{n}</span>
         <h2 className="font-display text-3xl leading-none">{title}</h2>
       </div>
       <div className="space-y-5">{children}</div>
@@ -86,7 +86,7 @@ export function Section({ n, title, children }: { n: string; title: string; chil
 /** Sticky bottom bar: total on the left, submit on the right. Always reachable on mobile. */
 export function CheckoutBar({ pending, total, detail, cta }: { pending: boolean; total: string; detail: string; cta: string }) {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-20 border-t-[3px] border-black bg-white pb-[env(safe-area-inset-bottom)]">
+    <div className="fixed inset-x-0 bottom-0 z-20 border-t-[3px] border-pine bg-white pb-[env(safe-area-inset-bottom)]">
       <div className="mx-auto flex max-w-2xl items-center gap-4 px-4 py-3 sm:px-6">
         <div className="min-w-0 flex-1">
           <p className="truncate text-[11px] uppercase tracking-[0.14em] text-mute">{detail}</p>
@@ -94,7 +94,7 @@ export function CheckoutBar({ pending, total, detail, cta }: { pending: boolean;
         </div>
         <button
           type="submit" disabled={pending}
-          className="h-12 shrink-0 bg-wine px-6 text-sm font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-wine-deep active:translate-y-px disabled:opacity-60"
+          className="h-12 shrink-0 bg-berry px-6 text-sm font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-berry-deep active:translate-y-px disabled:opacity-60"
         >
           {pending ? "Saving…" : cta}
         </button>
@@ -105,5 +105,5 @@ export function CheckoutBar({ pending, total, detail, cta }: { pending: boolean;
 
 export function FormError({ message }: { message?: string }) {
   if (!message) return null;
-  return <p role="alert" className="border-[1.5px] border-wine bg-wine-soft p-3.5 text-sm font-medium text-wine">{message}</p>;
+  return <p role="alert" className="border-[1.5px] border-berry bg-berry-soft p-3.5 text-sm font-medium text-berry">{message}</p>;
 }

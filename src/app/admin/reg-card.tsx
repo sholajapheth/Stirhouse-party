@@ -22,16 +22,16 @@ export function RegCard({ r }: { r: Reg }) {
   const msg = `Hello ${r.contact_name}, your payment for Wonderfest 2026 is confirmed. 🎉 Here is your entry pass (show the QR code at the door): ${pass}`;
 
   return (
-    <li className={["border-[1.5px] bg-white", paid ? "border-black" : "border-wine"].join(" ")}>
+    <li className={["border-[1.5px] bg-white", paid ? "border-pine" : "border-berry"].join(" ")}>
       <div className="flex items-start justify-between gap-3 p-4">
         <div className="min-w-0">
-          <p className="font-mono text-sm font-bold tracking-wider text-wine">{r.ref}</p>
+          <p className="font-mono text-sm font-bold tracking-wider text-berry">{r.ref}</p>
           <p className="mt-0.5 truncate text-lg font-semibold">{r.contact_name}</p>
           <p className="text-sm text-mute">{r.kind === "teens" ? "Teen" : "Kids"} · {when(r.created_at)}</p>
         </div>
         <div className="shrink-0 text-right">
           <p className="font-display text-3xl leading-none">{naira(r.amount)}</p>
-          <span className={["mt-1 inline-block px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em]", paid ? "bg-black text-white" : "bg-wine-soft text-wine"].join(" ")}>
+          <span className={["mt-1 inline-block px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em]", paid ? "bg-pine text-white" : "bg-berry-soft text-berry"].join(" ")}>
             {r.checked_in_at ? "Checked in" : paid ? "Paid" : "Awaiting"}
           </span>
         </div>
@@ -53,7 +53,7 @@ export function RegCard({ r }: { r: Reg }) {
             onClick={() => {
               if (confirm(`Confirm payment of ${naira(r.amount)} from ${r.contact_name} (${r.ref})?`)) start(() => approve(r.ref));
             }}
-            className="h-12 flex-1 bg-wine px-5 text-sm font-semibold uppercase tracking-[0.1em] text-white hover:bg-wine-deep disabled:opacity-60"
+            className="h-12 flex-1 bg-berry px-5 text-sm font-semibold uppercase tracking-[0.1em] text-white hover:bg-berry-deep disabled:opacity-60"
           >
             {pending ? "Approving…" : "Confirm payment"}
           </button>
@@ -61,11 +61,11 @@ export function RegCard({ r }: { r: Reg }) {
           <>
             <a
               href={`https://wa.me/${waNumber(r.contact_phone)}?text=${encodeURIComponent(msg)}`} target="_blank" rel="noreferrer"
-              className="flex h-12 flex-1 items-center justify-center bg-black px-4 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-wine"
+              className="flex h-12 flex-1 items-center justify-center bg-pine px-4 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-berry"
             >
               Send on WhatsApp
             </a>
-            <a href={pass} target="_blank" rel="noreferrer" className="flex h-12 items-center border-[1.5px] border-black px-4 text-sm font-semibold uppercase tracking-[0.08em]">
+            <a href={pass} target="_blank" rel="noreferrer" className="flex h-12 items-center border-[1.5px] border-pine px-4 text-sm font-semibold uppercase tracking-[0.08em]">
               View pass
             </a>
             <button
@@ -74,7 +74,7 @@ export function RegCard({ r }: { r: Reg }) {
                 setNote(!res.configured ? "Email isn't set up yet." : res.ok ? "Email sent." : "Email failed.");
               })}
               disabled={pending}
-              className="h-12 border-[1.5px] border-black px-4 text-sm font-semibold uppercase tracking-[0.08em] disabled:opacity-60"
+              className="h-12 border-[1.5px] border-pine px-4 text-sm font-semibold uppercase tracking-[0.08em] disabled:opacity-60"
             >
               Email
             </button>
@@ -84,9 +84,9 @@ export function RegCard({ r }: { r: Reg }) {
 
       {paid && (
         <div className="flex items-center justify-between gap-3 border-t border-line px-4 py-2.5 text-xs text-mute">
-          <span>Code <b className="font-mono text-black">{r.code}</b>{note && <> · {note}</>}</span>
+          <span>Code <b className="font-mono text-pine">{r.code}</b>{note && <> · {note}</>}</span>
           <button
-            className="underline underline-offset-4 hover:text-wine"
+            className="underline underline-offset-4 hover:text-berry"
             onClick={() => { if (confirm(`Undo payment for ${r.ref}? Its code will stop working.`)) start(() => unapprove(r.ref)); }}
           >
             Undo

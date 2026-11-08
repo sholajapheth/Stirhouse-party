@@ -28,17 +28,17 @@ export function KidsForm() {
       <Section n="02" title="Your children">
         {Array.from({ length: count }, (_, i) => (
           <div key={i} className="border-[1.5px] border-line bg-white p-4">
-            <p className="mb-3 font-display text-xl text-wine">Child {i + 1}</p>
+            <p className="mb-3 font-display text-xl text-berry">Child {i + 1}</p>
             <div className="grid grid-cols-[1fr_6.5rem] gap-3">
               <Field label="Name" name="childName" autoComplete="off" defaultValue={names[i]} error={e[`children.${i}.name`]} />
               <AgeSelect name="childAge" ages={KIDS_AGES} defaultValue={ages[i]} error={e[`children.${i}.age`]} />
             </div>
           </div>
         ))}
-        {e.children && <p role="alert" className="text-sm font-medium text-wine">{e.children}</p>}
+        {e.children && <p role="alert" className="text-sm font-medium text-berry">{e.children}</p>}
         <div className="flex gap-3">
           {count < MAX_KIDS && (
-            <button type="button" onClick={() => setCount(count + 1)} className="h-12 flex-1 border-[1.5px] border-dashed border-black text-sm font-semibold uppercase tracking-[0.1em] hover:border-wine hover:text-wine">
+            <button type="button" onClick={() => setCount(count + 1)} className="h-12 flex-1 border-[1.5px] border-dashed border-pine text-sm font-semibold uppercase tracking-[0.1em] hover:border-berry hover:text-berry">
               + Add a child
             </button>
           )}
