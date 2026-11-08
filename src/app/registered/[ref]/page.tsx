@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { Lights, Snow } from "@/components/Christmas";
+import { Lights, Snow, Stars } from "@/components/Christmas";
 import { Shell } from "@/components/Shell";
 import { BANK, EVENT, RECEIPT_CONTACT, naira } from "@/lib/config";
 import { sql } from "@/lib/db";
@@ -25,6 +25,7 @@ export default async function Page({ params }: { params: Promise<{ ref: string }
     <Shell>
       <div className="grain relative overflow-hidden bg-berry text-white">
         <Snow count={16} />
+        <Stars count={14} tone="light" />
         <Lights />
         <div className="relative mx-auto max-w-2xl px-4 pb-10 pt-6 sm:px-6">
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/65">Registration received</p>

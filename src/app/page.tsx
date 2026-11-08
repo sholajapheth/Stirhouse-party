@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { Bells } from "@/components/Bells";
-import { Lights, Snow, Star } from "@/components/Christmas";
+import { Lights, Snow, Star, Stars } from "@/components/Christmas";
 import { Shell } from "@/components/Shell";
 import { EVENT, PRICE_PER_PERSON, naira } from "@/lib/config";
 
@@ -21,6 +21,7 @@ export default function Home() {
       <section className="grain relative overflow-hidden bg-pine-deep text-white">
         <div className="absolute inset-0 bg-[radial-gradient(900px_420px_at_50%_0%,#1f6a4d_0%,transparent_70%)]" aria-hidden />
         <Snow count={34} />
+        <Stars count={18} tone="gold" />
         <Lights />
         <Bells className="absolute right-1 top-0 z-10 sm:right-8" />
 
@@ -65,8 +66,9 @@ export default function Home() {
       </section>
 
       {/* WHAT WE'RE CELEBRATING */}
-      <section className="bg-snow">
-        <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 sm:py-20">
+      <section className="relative overflow-hidden bg-snow">
+        <Stars count={14} tone="dark" />
+        <div className="relative mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 sm:py-20">
           <Star className="mx-auto size-8" />
           <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-berry">Why we celebrate</p>
           <blockquote className="mt-4 font-serif text-3xl italic leading-tight text-pine sm:text-5xl">
@@ -82,8 +84,9 @@ export default function Home() {
       </section>
 
       {/* REGISTER */}
-      <main className="border-t-[3px] border-gold bg-pine text-white">
-        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
+      <main className="relative overflow-hidden border-t-[3px] border-gold bg-pine text-white">
+        <Stars count={16} tone="light" />
+        <div className="relative mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="font-display text-5xl sm:text-7xl">Who’s coming?</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <Choice href="/register/kids" title="Kids" sub="Ages 1 – 12" body="A parent or guardian registers up to five children." tone="snow" />
@@ -93,8 +96,9 @@ export default function Home() {
       </main>
 
       {/* HOW IT WORKS */}
-      <section className="bg-snow">
-        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
+      <section className="relative overflow-hidden bg-snow">
+        <Stars count={12} tone="dark" />
+        <div className="relative mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="font-display text-5xl text-pine sm:text-7xl">How it works</h2>
           <ol className="mt-6 grid border-t-[3px] border-berry sm:grid-cols-3">
             {STEPS.map(([n, t, text]) => (
@@ -110,6 +114,7 @@ export default function Home() {
 
       <footer className="grain relative overflow-hidden bg-berry px-4 py-10 text-center text-white">
         <Snow count={12} />
+        <Stars count={10} tone="light" />
         <p className="relative font-display text-3xl">Merry Christmas from Harvesters NextGen</p>
         <p className="relative mt-1 text-xs text-white/70">Harvesters International Christian Centre · Gbagada</p>
       </footer>

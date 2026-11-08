@@ -1,3 +1,4 @@
+import { Stars } from "@/components/Christmas";
 import { PageHead, Shell } from "@/components/Shell";
 import { KidsForm } from "./form";
 
@@ -7,7 +8,8 @@ export default function Page() {
   return (
     <Shell back>
       <PageHead eyebrow="Kids · Ages 1–12" title="Register your children" sub="Up to five per registration." />
-      <main className="mx-auto max-w-2xl px-4 pb-36 pt-8 sm:px-6 sm:pt-10">
+      <main className="relative mx-auto max-w-2xl px-4 pb-36 pt-8 sm:px-6 sm:pt-10">
+        <Stars count={12} tone="dark" />
         <KidsForm />
       </main>
     </Shell>

@@ -80,3 +80,10 @@ body {
 }
 
 :focus-visible { outline: 3px solid var(--color-gold); outline-offset: 2px; }
+
+@keyframes sparkle {
+  0%, 100% { opacity: .25; transform: scale(.55) rotate(0deg); }
+  50%      { opacity: 1;   transform: scale(1)   rotate(25deg); }
+}
+.sparkle { animation: sparkle 3.4s ease-in-out infinite; filter: drop-shadow(0 0 3px currentColor); }
+@media (prefers-reduced-motion: reduce) { .sparkle { animation: none; opacity: .7; } }

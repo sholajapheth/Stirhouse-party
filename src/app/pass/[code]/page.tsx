@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import QRCode from "qrcode";
-import { Lights, Snow } from "@/components/Christmas";
+import { Lights, Snow, Stars } from "@/components/Christmas";
 import { Shell } from "@/components/Shell";
 import { EVENT } from "@/lib/config";
 import { sql } from "@/lib/db";
@@ -21,6 +21,7 @@ export default async function Page({ params }: { params: Promise<{ code: string 
     <Shell>
       <div className="grain relative overflow-hidden bg-berry text-white">
         <Snow count={14} />
+        <Stars count={14} tone="light" />
         <Lights />
         <div className="relative mx-auto max-w-md px-4 pb-24 pt-6 text-center">
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/65">Entry pass</p>

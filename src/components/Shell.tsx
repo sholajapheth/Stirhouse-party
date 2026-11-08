@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Lights, Snow, Star } from "./Christmas";
+import { Lights, Snow, Star, Stars } from "./Christmas";
 
 export function Shell({ children, back }: { children: React.ReactNode; back?: boolean }) {
   return (
@@ -26,6 +26,7 @@ export function PageHead({ eyebrow, title, sub }: { eyebrow: string; title: stri
   return (
     <div className="grain relative overflow-hidden bg-berry text-white">
       <Snow count={14} />
+      <Stars count={12} tone="light" />
       <Lights className="opacity-95" />
       <div className="relative mx-auto max-w-2xl px-4 pb-9 pt-5 sm:px-6 sm:pb-12">
         <p className="rise text-[11px] font-medium uppercase tracking-[0.22em] text-gold-soft" style={{ "--i": "0ms" } as React.CSSProperties}>{eyebrow}</p>
