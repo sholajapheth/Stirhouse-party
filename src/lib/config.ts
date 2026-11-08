@@ -9,6 +9,15 @@ export const EVENT = {
   mapUrl: "https://www.google.com/maps/search/?api=1&query=Harvesters+International+Christian+Centre+Gbagada+Plot+5-7+Gbagada+Oshodi+Expressway+Lagos",
 };
 
+/** The teens' event is separate from Wonderfest. Date/time/venue are not confirmed yet. */
+export const BALL = {
+  name: "Teens Christmas Ball",
+  theme: "Black & Gold",
+  date: "To be announced",
+  time: "To be announced",
+  venue: "To be announced",
+};
+
 export const PRICE_PER_PERSON = Number(process.env.PRICE_PER_PERSON ?? 20000);
 
 export const BANK = {
@@ -30,9 +39,9 @@ export const KIDS_AGES = Array.from({ length: 12 }, (_, i) => i + 1); // 1–12
 export const TEEN_AGES = [13, 14, 15, 16, 17];
 
 export const MEMBER_OPTIONS = [
-  { value: "member_with_kids", label: "I attend Harvesters Gbagada and my child(ren) attend Kidzzone or Stirhouse" },
-  { value: "member_no_kids", label: "I attend Harvesters Gbagada but my child(ren) do not attend Kidzzone or Stirhouse" },
-  { value: "guest", label: "I do not attend Harvesters Gbagada" },
+  { value: "member_with_kids", label: "I attend Harvesters Gbagada and my child(ren) attend Kidzzone", teen: "I attend Harvesters Stirhouse" },
+  { value: "member_no_kids", label: "I attend Harvesters Gbagada but my child(ren) do not attend Kidzzone", teen: "I attend Harvesters Gbagada, but not Stirhouse" },
+  { value: "guest", label: "I do not attend Harvesters Gbagada", teen: "I’m a guest (I don’t attend Harvesters Gbagada)" },
 ] as const;
 
 export const naira = (n: number) => `₦${n.toLocaleString("en-NG")}`;

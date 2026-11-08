@@ -30,11 +30,11 @@ export async function approve(ref: string) {
       const rows = (await db`
         update registrations set status = 'paid', paid_at = now(), code = ${makeCode()}
         where ref = ${ref} and status = 'pending'
-        returning code, email, contact_name, id`) as { code: string; email: string; contact_name: string; id: string }[];
+        returning code, email, contact_name, id, kind`) as { code: string; email: string; contact_name: string; id: string; kind: string }[];
       const r = rows[0];
       if (r) {
         const people = (await db`select name from attendees where registration_id = ${r.id} order by name`) as { name: string }[];
-        await sendPassEmail(r.email, r.contact_name, r.code, people.map((p) => p.name)).catch(() => false);
+        await sendPassEmail(r.email, r.contact_name, r.code, people.map((p) => p.name), r.kind).catch(() => false);
       }
       break;
     } catch (e) {
@@ -49,12 +49,12 @@ export async function approve(ref: string) {
 export async function resendEmail(ref: string): Promise<{ ok: boolean; configured: boolean }> {
   await requireAdmin();
   const db = sql();
-  const rows = (await db`select id, code, email, contact_name from registrations where ref = ${ref} and status = 'paid'`) as { id: string; code: string; email: string; contact_name: string }[];
+  const rows = (await db`select id, code, email, contact_name, kind from registrations where ref = ${ref} and status = 'paid'`) as { id: string; code: string; email: string; contact_name: string; kind: string }[];
   const r = rows[0];
   if (!r) return { ok: false, configured: true };
   if (!process.env.RESEND_API_KEY || !process.env.EMAIL_FROM) return { ok: false, configured: false };
   const people = (await db`select name from attendees where registration_id = ${r.id} order by name`) as { name: string }[];
-  return { ok: await sendPassEmail(r.email, r.contact_name, r.code, people.map((p) => p.name)), configured: true };
+  return { ok: await sendPassEmail(r.email, r.contact_name, r.code, people.map((p) => p.name), r.kind), configured: true };
 }
 
 export async function unapprove(ref: string) {

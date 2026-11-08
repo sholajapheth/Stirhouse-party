@@ -1,7 +1,7 @@
 import { MEMBER_OPTIONS } from "@/lib/config";
 
 const base =
-  "block w-full h-12 border-[1.5px] border-pine bg-white px-3.5 text-base text-pine placeholder:text-mute/60 " +
+  "block w-full h-12 border-[1.5px] border-pine bg-field px-3.5 text-base text-pine placeholder:text-mute/60 " +
   "rounded-none outline-none transition focus:border-berry focus:ring-4 focus:ring-berry/15 " +
   "aria-[invalid=true]:border-berry aria-[invalid=true]:bg-berry-soft";
 
@@ -46,23 +46,20 @@ export function AgeSelect({
 }
 
 export function MemberStatus({ error, defaultValue, teen }: { error?: string; defaultValue?: string; teen?: boolean }) {
-  const options = teen ? MEMBER_OPTIONS.filter((o) => o.value !== "member_with_kids") : MEMBER_OPTIONS;
-  const text = (v: string, l: string) =>
-    teen ? (v === "member_no_kids" ? "Yes, I attend Harvesters Gbagada" : "No, I'm a guest") : l;
   return (
     <fieldset>
       <legend className={labelCls + " mb-3"}>
-        {teen ? "Do you attend Harvesters Gbagada?" : "Guest or member of Harvesters NextGen?"}
+        {teen ? "Are you a guest or a member of Harvesters Stirhouse?" : "Guest or member of Harvesters NextGen?"}
       </legend>
       <div className="space-y-2.5">
-        {options.map((o) => (
+        {MEMBER_OPTIONS.map((o) => (
           <label
             key={o.value}
-            className="relative flex min-h-14 cursor-pointer items-center gap-3.5 border-[1.5px] border-pine bg-white px-3.5 py-3 text-[15px] leading-snug transition has-[:checked]:border-berry has-[:checked]:bg-berry has-[:checked]:text-white has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-berry/20"
+            className="relative flex min-h-14 cursor-pointer items-center gap-3.5 border-[1.5px] border-pine bg-field px-3.5 py-3 text-[15px] leading-snug transition has-[:checked]:border-berry has-[:checked]:bg-berry has-[:checked]:text-on-berry has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-berry/20"
           >
             <input type="radio" name="memberStatus" value={o.value} defaultChecked={defaultValue === o.value} className="peer sr-only" />
             <span className="grid size-5 shrink-0 place-items-center rounded-full border-[1.5px] border-current after:size-2.5 after:scale-0 after:rounded-full after:bg-current after:transition peer-checked:after:scale-100" aria-hidden />
-            <span>{text(o.value, o.label)}</span>
+            <span>{teen ? o.teen : o.label}</span>
           </label>
         ))}
       </div>
@@ -86,7 +83,7 @@ export function Section({ n, title, children }: { n: string; title: string; chil
 /** Sticky bottom bar: total on the left, submit on the right. Always reachable on mobile. */
 export function CheckoutBar({ pending, total, detail, cta }: { pending: boolean; total: string; detail: string; cta: string }) {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-20 border-t-[3px] border-pine bg-white pb-[env(safe-area-inset-bottom)]">
+    <div className="fixed inset-x-0 bottom-0 z-20 border-t-[3px] border-pine bg-field pb-[env(safe-area-inset-bottom)]">
       <div className="mx-auto flex max-w-2xl items-center gap-4 px-4 py-3 sm:px-6">
         <div className="min-w-0 flex-1">
           <p className="truncate text-[11px] uppercase tracking-[0.14em] text-mute">{detail}</p>
@@ -94,7 +91,7 @@ export function CheckoutBar({ pending, total, detail, cta }: { pending: boolean;
         </div>
         <button
           type="submit" disabled={pending}
-          className="h-12 shrink-0 bg-berry px-6 text-sm font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-berry-deep active:translate-y-px disabled:opacity-60"
+          className="h-12 shrink-0 bg-berry px-6 text-sm font-semibold uppercase tracking-[0.1em] text-on-berry transition hover:bg-berry-deep active:translate-y-px disabled:opacity-60"
         >
           {pending ? "Saving…" : cta}
         </button>

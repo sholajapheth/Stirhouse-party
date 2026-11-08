@@ -128,3 +128,64 @@ export function Stars({ count = 14, tone = "gold", className = "" }: { count?: n
     </div>
   );
 }
+
+/** A crystal mirror ball that appears to rotate. Hangs from the top of its container. */
+export function DiscoBall({ className = "", size = 120 }: { className?: string; size?: number }) {
+  return (
+    <div className={["pointer-events-none flex flex-col items-center", className].join(" ")} aria-hidden>
+      <span className="block h-16 w-px bg-gradient-to-b from-transparent to-[#f0c35a]" />
+      <svg width={size} height={size} viewBox="0 0 120 120" className="bell drop-shadow-[0_10px_24px_rgba(240,195,90,.35)]">
+        <defs>
+          <clipPath id="ballclip"><circle cx="60" cy="60" r="54" /></clipPath>
+          <pattern id="tiles" width="12" height="12" patternUnits="userSpaceOnUse">
+            <rect width="12" height="12" fill="#d9d2c0" />
+            <rect x=".6" y=".6" width="10.8" height="10.8" fill="#f4ead0" />
+            <rect x=".6" y=".6" width="10.8" height="5" fill="#fffaf0" opacity=".7" />
+          </pattern>
+          <radialGradient id="shade" cx="35%" cy="30%" r="80%">
+            <stop offset="0" stopColor="#ffffff" stopOpacity=".55" />
+            <stop offset=".35" stopColor="#ffffff" stopOpacity="0" />
+            <stop offset=".75" stopColor="#3a2a08" stopOpacity=".45" />
+            <stop offset="1" stopColor="#0b0907" stopOpacity=".92" />
+          </radialGradient>
+        </defs>
+        <rect x="52" y="0" width="16" height="8" rx="2" fill="#c99822" />
+        <g clipPath="url(#ballclip)">
+          <g className="disco-tiles"><rect x="0" y="4" width="160" height="120" fill="url(#tiles)" /></g>
+          <circle cx="60" cy="60" r="54" fill="url(#shade)" />
+          {[[38, 40], [76, 34], [58, 62], [86, 70], [34, 78], [66, 90], [50, 22]].map(([x, y], i) => (
+            <circle key={i} cx={x} cy={y} r="2.4" fill="#fff" className="glint" style={{ animationDelay: `${i * 0.31}s` }} />
+          ))}
+        </g>
+        <circle cx="60" cy="60" r="54" fill="none" stroke="#f0c35a" strokeOpacity=".6" strokeWidth="1.5" />
+      </svg>
+    </div>
+  );
+}
+
+const BAUBLE_COLORS = {
+  gold: ["#fff1b8", "#f0c35a", "#9a6a12"],
+  black: ["#6b6556", "#1a1812", "#050403"],
+  champagne: ["#ffffff", "#f1dfae", "#b89a54"],
+} as const;
+
+/** A single hanging bauble. Drop several at different lengths and delays. */
+export function Bauble({ tone = "gold", length = 48, size = 34, delay = 0, className = "" }: { tone?: keyof typeof BAUBLE_COLORS; length?: number; size?: number; delay?: number; className?: string }) {
+  const [hi, mid, lo] = BAUBLE_COLORS[tone];
+  const id = `bb-${tone}`;
+  return (
+    <div className={["bell flex flex-col items-center", className].join(" ")} style={{ animationDelay: `${delay}s`, animationDuration: `${3 + (delay % 2)}s` }} aria-hidden>
+      <span className="block w-px bg-[#f0c35a]/70" style={{ height: length }} />
+      <svg width={size} height={size * 1.12} viewBox="0 0 40 45">
+        <defs>
+          <radialGradient id={id} cx="35%" cy="30%" r="75%">
+            <stop offset="0" stopColor={hi} /><stop offset=".5" stopColor={mid} /><stop offset="1" stopColor={lo} />
+          </radialGradient>
+        </defs>
+        <rect x="16" y="0" width="8" height="6" rx="1.5" fill="#c99822" />
+        <circle cx="20" cy="25" r="18" fill={`url(#${id})`} />
+        <ellipse cx="14" cy="17" rx="5" ry="3" fill="#fff" opacity=".55" transform="rotate(-30 14 17)" />
+      </svg>
+    </div>
+  );
+}

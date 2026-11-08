@@ -14,6 +14,8 @@
   --color-gold-soft: #f9e6b3;
   --color-snow: #fbf6ec;
   --color-line: #e3d8c6;
+  --color-field: #ffffff;
+  --color-on-berry: #ffffff;
   --color-mute: #5f6b5c;
   --font-display: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
@@ -87,3 +89,31 @@ body {
 }
 .sparkle { animation: sparkle 3.4s ease-in-out infinite; filter: drop-shadow(0 0 3px currentColor); }
 @media (prefers-reduced-motion: reduce) { .sparkle { animation: none; opacity: .7; } }
+
+/* Teens Christmas Ball: black & gold. Every semantic token is remapped, so components need no changes. */
+.theme-ball {
+  --color-snow: #0b0907;
+  --color-pine: #f3e7c9;
+  --color-pine-deep: #050403;
+  --color-pine-mid: #1a150c;
+  --color-field: #16120a;
+  --color-line: #3b3118;
+  --color-mute: #b8a982;
+  --color-berry: #e8b53a;
+  --color-berry-deep: #c99822;
+  --color-berry-soft: #2a2110;
+  --color-on-berry: #0b0907;
+  --color-gold: #f0c35a;
+  --color-gold-soft: #f7e3a6;
+  background: var(--color-snow);
+  color: var(--color-pine);
+}
+.gold-text {
+  background: linear-gradient(180deg, #fff1b8 0%, #f0c35a 45%, #b8821f 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+@keyframes disco { to { transform: translateX(-12px); } }
+.disco-tiles { animation: disco 2.4s linear infinite; }
+@keyframes glint { 0%,100% { opacity: .1; } 50% { opacity: .95; } }
+.glint { animation: glint 2.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .disco-tiles, .glint { animation: none; } }

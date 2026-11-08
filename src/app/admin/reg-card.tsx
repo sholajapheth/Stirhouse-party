@@ -19,7 +19,7 @@ export function RegCard({ r }: { r: Reg }) {
   const [note, setNote] = useState("");
   const paid = r.status === "paid";
   const pass = r.code ? `${SITE_URL}/pass/${r.code}` : "";
-  const msg = `Hello ${r.contact_name}, your payment for Wonderfest 2026 is confirmed. 🎉 Here is your entry pass (show the QR code at the door): ${pass}`;
+  const msg = `Hello ${r.contact_name}, your payment for ${r.kind === "teens" ? "the Teens Christmas Ball" : "Wonderfest 2026"} is confirmed. 🎉 Here is your entry pass (show the QR code at the door): ${pass}`;
 
   return (
     <li className={["border-[1.5px] bg-white", paid ? "border-pine" : "border-berry"].join(" ")}>

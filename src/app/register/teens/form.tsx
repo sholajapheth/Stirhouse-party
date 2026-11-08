@@ -28,11 +28,11 @@ export function TeenForm() {
         <Field label="Phone number" name="guardianPhone" type="tel" inputMode="tel" defaultValue={v.guardianPhone} error={e.guardianPhone} />
       </Section>
 
-      <Section n="03" title="Church">
+      <Section n="03" title="Stirhouse">
         <MemberStatus teen error={e.memberStatus} defaultValue={v.memberStatus} />
       </Section>
 
-      <CheckoutBar pending={pending} total={naira(PRICE_PER_PERSON)} detail="1 teen pass" cta="Register" />
+      <CheckoutBar pending={pending} total={naira(PRICE_PER_PERSON)} detail="1 ball pass" cta="Register" />
     </form>
   );
 }

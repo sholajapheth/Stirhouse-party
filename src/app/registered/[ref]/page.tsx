@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
-import { Lights, Snow, Stars } from "@/components/Christmas";
+import { Bauble, Lights, Snow, Stars } from "@/components/Christmas";
 import { Shell } from "@/components/Shell";
-import { BANK, EVENT, RECEIPT_CONTACT, naira } from "@/lib/config";
+import { BALL, BANK, EVENT, RECEIPT_CONTACT, naira } from "@/lib/config";
 import { sql } from "@/lib/db";
 
 export const metadata = { title: "Registration received · Wonderfest 2026" };
@@ -18,18 +18,26 @@ export default async function Page({ params }: { params: Promise<{ ref: string }
   if (!reg) notFound();
   const people = (await db`select name, age from attendees where registration_id = ${reg.id} order by name`) as Attendee[];
 
+  const ball = reg.kind === "teens";
   const wa = (n: string) =>
-    `https://wa.me/${n}?text=${encodeURIComponent(`Hello, I'm sending my payment receipt for Wonderfest 2026. Reference: ${reg.ref}`)}`;
+    `https://wa.me/${n}?text=${encodeURIComponent(`Hello, I'm sending my payment receipt for ${ball ? BALL.name : "Wonderfest 2026"}. Reference: ${reg.ref}`)}`;
 
   return (
-    <Shell>
-      <div className="grain relative overflow-hidden bg-berry text-white">
+    <Shell theme={ball ? "ball" : "xmas"}>
+      <div className={["grain relative overflow-hidden text-white", ball ? "bg-pine-deep" : "bg-berry"].join(" ")}>
         <Snow count={16} />
-        <Stars count={14} tone="light" />
-        <Lights />
-        <div className="relative mx-auto max-w-2xl px-4 pb-10 pt-6 sm:px-6">
+        <Stars count={14} tone={ball ? "gold" : "light"} />
+        {ball ? (
+          <div className="absolute left-3 top-0 flex gap-3" aria-hidden>
+            <Bauble tone="gold" length={22} size={24} />
+            <Bauble tone="black" length={44} size={28} delay={0.8} />
+          </div>
+        ) : (
+          <Lights />
+        )}
+        <div className={["relative mx-auto max-w-2xl px-4 pb-10 sm:px-6", ball ? "pt-24" : "pt-6"].join(" ")}>
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/65">Registration received</p>
-          <h1 className="mt-2 font-display text-6xl leading-[0.9] sm:text-8xl">You’re in.<br />Now, pay.</h1>
+          <h1 className={["mt-2 font-display text-6xl leading-[0.9] sm:text-8xl", ball ? "gold-text" : ""].join(" ")}>You’re in.<br />Now, pay.</h1>
           <div className="mt-8 border-[1.5px] border-white p-4">
             <p className="text-[11px] uppercase tracking-[0.2em] text-white/70">Your reference · use as narration</p>
             <p className="mt-1 font-display text-6xl tracking-[0.08em]">{reg.ref}</p>
@@ -39,7 +47,7 @@ export default async function Page({ params }: { params: Promise<{ ref: string }
 
       <main className="mx-auto max-w-2xl space-y-10 px-4 py-10 sm:px-6">
         <Step n="01" title="Make your transfer">
-          <dl className="divide-y divide-line border-y-[1.5px] border-pine bg-white">
+          <dl className="divide-y divide-line border-y-[1.5px] border-pine bg-field">
             <Row k="Amount" v={naira(reg.amount)} big />
             <Row k="Account name" v={BANK.accountName} />
             <Row k="Account number" v={BANK.accountNumber} mono />
@@ -51,7 +59,7 @@ export default async function Page({ params }: { params: Promise<{ ref: string }
         <Step n="02" title="Send your receipt">
           <div className="grid gap-2.5 sm:grid-cols-2">
             {RECEIPT_CONTACT.whatsapp.map((w) => (
-              <a key={w.intl} href={wa(w.intl)} className="flex h-12 items-center justify-center bg-pine text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-berry">
+              <a key={w.intl} href={wa(w.intl)} className="flex h-12 items-center justify-center bg-pine text-sm font-semibold uppercase tracking-[0.08em] text-snow hover:bg-berry hover:text-on-berry">
                 WhatsApp {w.label}
               </a>
             ))}
@@ -66,7 +74,15 @@ export default async function Page({ params }: { params: Promise<{ ref: string }
 
         <Step n="03" title="Get your QR pass">
           <p className="text-[15px] leading-relaxed">
-            Once we’ve confirmed your payment we’ll email your entry QR code to <strong>{reg.email}</strong>. Bring it with you on <strong>{EVENT.date}</strong>, <strong>{EVENT.time}</strong>, at {EVENT.venue}, {EVENT.address} ({EVENT.landmark.toLowerCase()}). <a className="font-semibold text-berry underline underline-offset-4" href={EVENT.mapUrl} target="_blank" rel="noreferrer">Get directions</a>.
+            Once we’ve confirmed your payment we’ll send your entry QR code to <strong>{reg.email}</strong>.{" "}
+            {ball ? (
+              <>We’ll announce the date and venue of the {BALL.name} shortly. Dress code: <strong>{BALL.theme}</strong>.</>
+            ) : (
+              <>
+                Bring it with you on <strong>{EVENT.date}</strong>, <strong>{EVENT.time}</strong>, at {EVENT.venue}, {EVENT.address} ({EVENT.landmark.toLowerCase()}).{" "}
+                <a className="font-semibold text-berry underline underline-offset-4" href={EVENT.mapUrl} target="_blank" rel="noreferrer">Get directions</a>.
+              </>
+            )}
           </p>
         </Step>
 
