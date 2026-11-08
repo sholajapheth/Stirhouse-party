@@ -23,8 +23,8 @@ export default function Home() {
             <span className="text-[#c8506b]">FEST</span> <span className="text-white/35">26</span>
           </h1>
           <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4 border-t border-white/20 pt-5 text-sm">
-            <Detail k="When" v="December 2026 · date to be announced" />
-            <Detail k="Where" v="Harvesters Gbagada" />
+            <Detail k="When" v="Sun, 13 Dec 2026" />
+            <Detail k="Where" v="HICC Gbagada" />
             <Detail k="Per child" v={`${naira(PRICE_PER_PERSON)} · includes a meal for one adult`} />
           </div>
         </div>

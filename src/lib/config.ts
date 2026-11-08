@@ -1,8 +1,8 @@
 export const EVENT = {
   name: "WONDERFEST",
   tagline: "NextGen Christmas Celebration",
-  date: "December 2026",
-  venue: "Harvesters Gbagada Main Auditorium",
+  date: "Sunday, December 13, 2026",
+  venue: "HICC Gbagada",
 };
 
 export const PRICE_PER_PERSON = Number(process.env.PRICE_PER_PERSON ?? 20000);

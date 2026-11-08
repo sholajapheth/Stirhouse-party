@@ -62,7 +62,7 @@ export default async function Page({ params }: { params: Promise<{ ref: string }
 
         <Step n="03" title="Get your QR pass">
           <p className="text-[15px] leading-relaxed">
-            Once we’ve confirmed your payment we’ll email your entry QR code to <strong>{reg.email}</strong>. Bring it with you on the day.
+            Once we’ve confirmed your payment we’ll email your entry QR code to <strong>{reg.email}</strong>. Bring it with you on Sunday, 13 December at HICC Gbagada.
           </p>
         </Step>
 
