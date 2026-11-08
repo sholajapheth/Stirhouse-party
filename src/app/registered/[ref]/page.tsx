@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { Shell } from "@/components/Shell";
-import { BANK, EVENT, RECEIPT_CONTACT, naira } from "@/lib/config";
+import { BANK, RECEIPT_CONTACT, naira } from "@/lib/config";
 import { sql } from "@/lib/db";
 
-export const metadata = { title: "Registration received · ST★R LIGHT" };
+export const metadata = { title: "Registration received · Wonderfest 2026" };
 export const dynamic = "force-dynamic";
 
 type Reg = { id: string; ref: string; kind: string; amount: number; status: string; email: string };
@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: Promise<{ ref: string }
   const people = (await db`select name, age from attendees where registration_id = ${reg.id} order by name`) as Attendee[];
 
   const wa = (n: string) =>
-    `https://wa.me/${n}?text=${encodeURIComponent(`Hello, I'm sending my payment receipt for ST★R LIGHT. Reference: ${reg.ref}`)}`;
+    `https://wa.me/${n}?text=${encodeURIComponent(`Hello, I'm sending my payment receipt for Wonderfest 2026. Reference: ${reg.ref}`)}`;
 
   return (
     <Shell>
@@ -62,7 +62,7 @@ export default async function Page({ params }: { params: Promise<{ ref: string }
 
         <Step n="03" title="Get your QR pass">
           <p className="text-[15px] leading-relaxed">
-            Once we’ve confirmed your payment we’ll email your entry QR code to <strong>{reg.email}</strong>. Bring it on {EVENT.date}.
+            Once we’ve confirmed your payment we’ll email your entry QR code to <strong>{reg.email}</strong>. Bring it with you on the day.
           </p>
         </Step>
 

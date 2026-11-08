@@ -1,7 +1,7 @@
 import { PageHead, Shell } from "@/components/Shell";
 import { TeenForm } from "./form";
 
-export const metadata = { title: "Teens registration · ST★R LIGHT" };
+export const metadata = { title: "Teens registration · Wonderfest 2026" };
 
 export default function Page() {
   return (

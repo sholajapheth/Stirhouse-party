@@ -6,7 +6,7 @@ export function Shell({ children, back }: { children: React.ReactNode; back?: bo
       <header className="sticky top-0 z-30 border-b border-white/10 bg-black text-white">
         <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
           <Link href="/" className="font-display text-2xl leading-none tracking-wide">
-            ST<span className="text-[#c8506b]">★</span>R LIGHT
+            WONDER<span className="text-[#c8506b]">FEST</span> <span className="text-white/50">2026</span>
           </Link>
           {back ? (
             <Link href="/" className="-mr-2 flex h-11 items-center px-2 text-sm text-white/70 hover:text-white">

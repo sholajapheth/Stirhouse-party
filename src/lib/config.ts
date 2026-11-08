@@ -1,7 +1,7 @@
 export const EVENT = {
-  name: "ST★R LIGHT",
-  tagline: "A NextGen Christmas Experience",
-  date: "Saturday, December 20, 2025",
+  name: "WONDERFEST",
+  tagline: "NextGen Christmas Celebration",
+  date: "December 2026",
   venue: "Harvesters Gbagada Main Auditorium",
 };
 

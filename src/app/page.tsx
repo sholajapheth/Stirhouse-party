@@ -1,31 +1,31 @@
 import Link from "next/link";
 import { Shell } from "@/components/Shell";
-import { EVENT, PRICE_PER_PERSON, naira } from "@/lib/config";
+import { PRICE_PER_PERSON, naira } from "@/lib/config";
 
 const STEPS = [
   ["01", "Register", "Fill in the details. It takes two minutes."],
-  ["02", "Pay by transfer", `${"₦20,000"} per child or teen, using your reference.`],
+  ["02", "Pay by transfer", `${naira(PRICE_PER_PERSON)} per child, using your reference.`],
   ["03", "Get your QR code", "We confirm your payment and email your entry pass."],
 ];
 
 export default function Home() {
-  const ticker = Array.from({ length: 8 }, () => `${EVENT.date.split(", ")[1]} · Harvesters Gbagada · `);
+  const ticker = Array.from({ length: 8 }, () => "Wonderfest 2026 · Kidzzone & Stirhouse · ");
   return (
     <Shell>
       <section className="grain bg-black text-white">
         <div className="mx-auto max-w-5xl px-4 pb-12 pt-12 sm:px-6 sm:pb-20 sm:pt-20">
           <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-white/55">
-            Gbagada NextGen Christmas Experience
+            Harvesters NextGen Gbagada · Christmas 2026
           </p>
           <h1 className="mt-4 font-display text-[5.75rem] leading-[0.82] sm:text-[11rem]">
-            ST<span className="text-[#c8506b]">★</span>R
+            WONDER
             <br />
-            LIGHT
+            <span className="text-[#c8506b]">FEST</span> <span className="text-white/35">26</span>
           </h1>
           <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4 border-t border-white/20 pt-5 text-sm">
-            <Detail k="Date" v="Sat, 20 Dec 2025" />
-            <Detail k="Venue" v="Main Auditorium, Gbagada" />
-            <Detail k="Entry" v={`${naira(PRICE_PER_PERSON)} each`} />
+            <Detail k="When" v="December 2026 · date to be announced" />
+            <Detail k="Where" v="Harvesters Gbagada" />
+            <Detail k="Per child" v={`${naira(PRICE_PER_PERSON)} · includes a meal for one adult`} />
           </div>
         </div>
         <div className="overflow-hidden border-y border-white/15 bg-wine py-2.5" aria-hidden>

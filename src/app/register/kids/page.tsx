@@ -1,7 +1,7 @@
 import { PageHead, Shell } from "@/components/Shell";
 import { KidsForm } from "./form";
 
-export const metadata = { title: "Register your children · ST★R LIGHT" };
+export const metadata = { title: "Register your children · Wonderfest 2026" };
 
 export default function Page() {
   return (
