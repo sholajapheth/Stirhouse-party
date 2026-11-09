@@ -46,6 +46,10 @@ export default async function Page({ params }: { params: Promise<{ ref: string }
       </div>
 
       <main className="mx-auto max-w-2xl space-y-10 px-4 py-10 sm:px-6">
+        <p className="border-[1.5px] border-berry bg-berry-soft p-4 text-[15px] font-semibold leading-snug">
+          Your seat is not reserved yet. Registration alone does not validate your seat: payment does. Please pay now and send your receipt.
+        </p>
+
         <Step n="01" title="Make your transfer">
           <dl className="divide-y divide-line border-y-[1.5px] border-pine bg-field">
             <Row k="Amount" v={naira(reg.amount)} big />

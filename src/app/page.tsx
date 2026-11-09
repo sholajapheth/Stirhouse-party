@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 import { Bauble, DiscoBall, Lights, Snow, Star, Stars } from "@/components/Christmas";
 import { Bells } from "@/components/Bells";
 import { Gallery } from "@/components/Gallery";
+import { PaymentPanel } from "@/components/PaymentPanel";
 import { Shell } from "@/components/Shell";
 import { BALL, EVENT, PRICE_PER_PERSON, naira } from "@/lib/config";
 
@@ -112,6 +113,14 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {/* PAYMENT: visible before anyone registers */}
+      <section className="relative overflow-hidden bg-snow">
+        <div className="relative mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+          <PaymentPanel unit="child" />
+          <p className="mt-3 text-center text-sm text-mute">Same account for Wonderfest and the Teens Ball: {naira(PRICE_PER_PERSON)} per child or teen.</p>
+        </div>
+      </section>
 
       {/* WHAT WE'RE CELEBRATING */}
       <section className="relative overflow-hidden bg-snow">

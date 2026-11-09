@@ -29,7 +29,7 @@ export const BANK = {
 export const RECEIPT_CONTACT = {
   whatsapp: [
     { label: "0902 207 6642", intl: "2349022076642" },
-    { label: "0813 304 6771", intl: "2348133046771" },
+    { label: "0811 319 9535", intl: "2348113199535" },
   ],
   email: "gbagadanextgen@gmail.com",
 };
