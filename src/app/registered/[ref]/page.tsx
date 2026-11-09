@@ -80,7 +80,10 @@ export default async function Page({ params }: { params: Promise<{ ref: string }
           <p className="text-[15px] leading-relaxed">
             Once we’ve confirmed your payment we’ll send your entry QR code to <strong>{reg.email}</strong>.{" "}
             {ball ? (
-              <>We’ll announce the date and venue of the {BALL.name} shortly. Dress code: <strong>{BALL.theme}</strong>.</>
+              <>
+                Bring it with you to the {BALL.name} on <strong>{BALL.date}</strong>, <strong>{BALL.time}</strong>, at {BALL.venue}, <strong>{BALL.hall}</strong>, {EVENT.address} ({EVENT.landmark.toLowerCase()}). Theme: <strong>{BALL.theme}</strong>.{" "}
+                <a className="font-semibold text-berry underline underline-offset-4" href={EVENT.mapUrl} target="_blank" rel="noreferrer">Get directions</a>.
+              </>
             ) : (
               <>
                 Bring it with you on <strong>{EVENT.date}</strong>, <strong>{EVENT.time}</strong>, at {EVENT.venue}, {EVENT.address} ({EVENT.landmark.toLowerCase()}).{" "}

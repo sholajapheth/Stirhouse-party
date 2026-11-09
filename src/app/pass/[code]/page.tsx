@@ -36,7 +36,11 @@ export default async function Page({ params }: { params: Promise<{ code: string 
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/65">Entry pass</p>
           <h1 className={["mt-1 font-display leading-[0.9]", ball ? "gold-text text-5xl" : "text-6xl"].join(" ")}>{ball ? BALL.name : "Wonderfest 2026"}</h1>
           {ball ? (
-            <p className="mt-2 text-sm text-white/90">Theme: {BALL.theme} · Date &amp; venue to be announced</p>
+            <>
+              <p className="mt-2 text-sm text-white/90">{BALL.date} · {BALL.time}</p>
+              <p className="text-sm text-white/90">{BALL.venue}, {BALL.hall}</p>
+              <p className="text-xs text-white/70">{EVENT.address} · Theme: {BALL.theme}</p>
+            </>
           ) : (
             <>
               <p className="mt-2 text-sm text-white/90">{EVENT.date} · {EVENT.time}</p>

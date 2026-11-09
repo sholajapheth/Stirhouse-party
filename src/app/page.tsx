@@ -93,8 +93,13 @@ export default function Home() {
 
             <dl className="rise mt-8 grid gap-5 border-t border-[#f0c35a]/30 pt-6 text-sm" style={d(340)}>
               <Detail k="Theme" v={BALL.theme} />
-              <Detail k="When &amp; where" v="Details coming soon">
-                <span className="mt-0.5 block text-white/65">Date and venue will be announced shortly.</span>
+              <Detail k="When" v={BALL.date}>
+                <span className="mt-0.5 block text-white/75">Starts at {BALL.time}</span>
+              </Detail>
+              <Detail k="Where" v={`${BALL.venue} · ${BALL.hall}`}>
+                <span className="mt-0.5 block text-white/75">{EVENT.address}</span>
+                <span className="block text-white/60">{EVENT.landmark}</span>
+                <a href={EVENT.mapUrl} target="_blank" rel="noreferrer" className="mt-1.5 inline-block font-semibold text-gold underline underline-offset-4">Get directions →</a>
               </Detail>
               <Detail k="Per teen" v={naira(PRICE_PER_PERSON)} />
             </dl>

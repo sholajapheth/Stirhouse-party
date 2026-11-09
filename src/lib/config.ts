@@ -9,13 +9,14 @@ export const EVENT = {
   mapUrl: "https://www.google.com/maps/search/?api=1&query=Harvesters+International+Christian+Centre+Gbagada+Plot+5-7+Gbagada+Oshodi+Expressway+Lagos",
 };
 
-/** The teens' event is separate from Wonderfest. Date/time/venue are not confirmed yet. */
+/** The teens' event is separate from Wonderfest: same day and venue, different hall and time. */
 export const BALL = {
   name: "Teens Christmas Ball",
   theme: "Black & Gold",
-  date: "To be announced",
-  time: "To be announced",
-  venue: "To be announced",
+  date: "Saturday, December 12, 2026",
+  time: "11:00 AM",
+  venue: "HICC Gbagada",
+  hall: "East Auditorium",
 };
 
 export const PRICE_PER_PERSON = Number(process.env.PRICE_PER_PERSON ?? 20000);
