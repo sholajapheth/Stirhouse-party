@@ -86,7 +86,7 @@ export default async function Page({ params }: { params: Promise<{ ref: string }
               </>
             ) : (
               <>
-                Bring it with you on <strong>{EVENT.date}</strong>, <strong>{EVENT.time}</strong>, at {EVENT.venue}, {EVENT.address} ({EVENT.landmark.toLowerCase()}).{" "}
+                Bring it with you on <strong>{EVENT.date}</strong>, <strong>{EVENT.time}</strong>, at {EVENT.venue}, <strong>{EVENT.hall}</strong>, {EVENT.address} ({EVENT.landmark.toLowerCase()}).{" "}
                 <a className="font-semibold text-berry underline underline-offset-4" href={EVENT.mapUrl} target="_blank" rel="noreferrer">Get directions</a>.
               </>
             )}

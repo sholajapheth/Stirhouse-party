@@ -44,7 +44,7 @@ export default async function Page({ params }: { params: Promise<{ code: string 
           ) : (
             <>
               <p className="mt-2 text-sm text-white/90">{EVENT.date} · {EVENT.time}</p>
-              <p className="text-sm text-white/90">{EVENT.venue}</p>
+              <p className="text-sm text-white/90">{EVENT.venue}, {EVENT.hall}</p>
               <p className="text-xs text-white/70">{EVENT.address}</p>
             </>
           )}

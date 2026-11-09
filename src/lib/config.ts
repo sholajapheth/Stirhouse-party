@@ -4,6 +4,7 @@ export const EVENT = {
   date: "Saturday, December 12, 2026",
   time: "10:00 AM",
   venue: "HICC Gbagada",
+  hall: "Main Auditorium",
   address: "Plot 5–7, Gbagada–Oshodi Expressway, Gbagada, Lagos",
   landmark: "Opposite the Mobil filling station",
   mapUrl: "https://www.google.com/maps/search/?api=1&query=Harvesters+International+Christian+Centre+Gbagada+Plot+5-7+Gbagada+Oshodi+Expressway+Lagos",

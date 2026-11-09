@@ -9,7 +9,7 @@ export async function sendPassEmail(to: string, name: string, code: string, peop
   const pass = `${SITE_URL}/pass/${code}`;
   const html = `<div style="font-family:Arial,sans-serif;max-width:480px;margin:auto;color:#14382b">
     <h1 style="font-size:28px;margin:0;color:${ball ? "#b8821f" : "#b3172b"}">${ball ? "Your Teens Christmas Ball pass ✨" : "Your Wonderfest pass 🎄"}</h1>
-    <p>Hi ${esc(name)}, your payment is confirmed. ${ball ? `Show this QR code at the door on ${BALL.date} at ${BALL.time}, ${BALL.venue}, ${BALL.hall}, ${EVENT.address}. Theme: ${BALL.theme}.` : `Show this QR code at the door on ${EVENT.date} at ${EVENT.time}, ${EVENT.venue}, ${EVENT.address}.`}</p>
+    <p>Hi ${esc(name)}, your payment is confirmed. ${ball ? `Show this QR code at the door on ${BALL.date} at ${BALL.time}, ${BALL.venue}, ${BALL.hall}, ${EVENT.address}. Theme: ${BALL.theme}.` : `Show this QR code at the door on ${EVENT.date} at ${EVENT.time}, ${EVENT.venue}, ${EVENT.hall}, ${EVENT.address}.`}</p>
     <p style="text-align:center"><img src="${pass}/qr" width="240" height="240" alt="QR ${code}"></p>
     <p style="text-align:center;font-size:22px;letter-spacing:2px"><b>${code}</b></p>
     <p>Admits: ${people.map(esc).join(", ")}</p>

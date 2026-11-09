@@ -50,7 +50,7 @@ export default function Home() {
               <Detail k="When" v={EVENT.date}>
                 <span className="mt-0.5 block text-white/75">Starts at {EVENT.time}</span>
               </Detail>
-              <Detail k="Where" v={EVENT.venue}>
+              <Detail k="Where" v={`${EVENT.venue} · ${EVENT.hall}`}>
                 <span className="mt-0.5 block text-white/75">{EVENT.address}</span>
                 <span className="block text-white/60">{EVENT.landmark}</span>
                 <a href={EVENT.mapUrl} target="_blank" rel="noreferrer" className="mt-1.5 inline-block font-semibold text-gold underline underline-offset-4">Get directions →</a>
